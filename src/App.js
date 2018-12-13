@@ -1,28 +1,13 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+ const express = require('express');
+ const app = express();
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
-  }
-}
+  const productsRoutes = require('./api/routes/products');
+  const orderRoutes = require ('./api/routes/order');
+  app.use('/orders',orderRoutes);
+  app.use('/products',productsRoutes);
+  app.use((req,res,next)=>{
+      const error = new error('not found!');
+      error.status(404);
+  });
 
-export default App;
+  module.exports = app;
